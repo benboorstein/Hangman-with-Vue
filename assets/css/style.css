@@ -7,10 +7,58 @@ body {
     background-color: antiquewhite;
 }
 
+#app {
+  text-align: center;
+}
+
 h1 {
     font-size: 25px;
-    text-align: center;
     margin-bottom: 100px;
+}
+
+#gallows-line-1 {
+  height: 2px;
+  width: 400px;
+  background-color: black;
+  margin: auto;
+}
+
+#gallows-line-2 {
+  height: 40px;
+  width: 2px;
+  background-color: black;
+  margin: auto;
+}
+
+#man {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+.is-hidden {
+  visibility: hidden;
+}
+
+#word {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+#word li {
+  /* flex-grow: 1; */
+  margin: 0 15px 0 15px;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+#alphabet {
+  margin-top: 90px;
+  list-style-type: none;
+  padding: 0
 }
 
 
