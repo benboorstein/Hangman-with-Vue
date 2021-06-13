@@ -28,6 +28,8 @@ const App = {
                 'ladder',
                 'incredible' 
             ],
+            wordGenerated: this.words[Math.floor(Math.random() * this.words.length)],
+            wordLettersArr: this.wordGenerated.split(''),
             lettersOfWord: ''
         }
     },
@@ -35,9 +37,7 @@ const App = {
         //
     },
     mounted() {
-        let wordGenerated = this.words[Math.floor(Math.random() * this.words.length)]
-        let wordLettersArr = wordGenerated.split('')
-        wordLettersArr.forEach(letter => {
+        this.wordLettersArr.forEach(letter => {
             console.log(letter)
             // LEFT OFF HERE - need to render each letter of the wordGenerated...not sure how yet...obviously use this.lettersOfWord somehow
         })
