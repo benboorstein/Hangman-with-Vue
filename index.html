@@ -27,59 +27,13 @@
                     <li class='is-hidden'>RIGHT LEG</li>
                     <li class='is-hidden'>LEFT LEG</li>
                 </ul>
-
-
-
-
                 <ul id='word'>
-                    <!-- <li>{{ wordLettersArr }}</li> -->
-                    <li v-for="letter in wordLettersArr" :key="letter">{{ wordLettersArr }}</li>
+                    <li v-for="letter in playerWordInProg" :key="letter">{{ letter }}</li>
                 </ul>
-
-                <!--
-                    - first just get it to be the way I want it ON LOAD
-                    --- the only HTML that needs to 'change' is the above <ul>
-                -->
-
-
-
-
-                <ul id='alphabet'>
-                    <li>
-                        <button>A</button>
-                        <button>B</button>
-                        <button>C</button>
-                        <button>D</button>
-                        <button>E</button>
-                        <button>F</button>
-                        <button>G</button>
-                    </li>
-                    <li>
-                        <button>H</button>
-                        <button>I</button>
-                        <button>J</button>
-                        <button>K</button>
-                        <button>L</button>
-                        <button>M</button>
-                        <button>N</button>
-                        <button>O</button>
-                        <button>P</button>
-                    </li>
-                    <li>
-                        <button>Q</button>
-                        <button>R</button>
-                        <button>S</button>
-                        <button>T</button>
-                        <button>U</button>
-                        <button>V</button>
-                    </li>
-                    <li>
-                        <button>W</button>
-                        <button>X</button>
-                        <button>Y</button>
-                        <button>Z</button>
-                    </li>
-                </ul>
+                <p id='alphabet'>
+                    <button @click="checkIfLettInWord(alphaLett)" v-for="alphaLett in alphabet">{{ alphaLett }}</button>
+                    <!-- remember '@click' is short for 'v-on:click' -->
+                </p>
             </main>
             <footer>
 
@@ -89,99 +43,3 @@
         <script src="./assets/js/app.js"></script>
     </body>
 </html>
-
-
-
-
-<!-- ---------------------------------------------------------- -->
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link rel="stylesheet" href="./assets/css/style.css"> always put this line after fonts because of how things load
-        
-        <title>Hangman with Vue</title>
-    </head>
-    <body>
-        <div id="app">
-            <header>
-                <h1>Hangman with Vue</h1>
-            </header>
-            <main>
-                <section>
-                    <p id='gallows-line-1'></p>
-                    <p id='gallows-line-2'></p>
-                </section>
-                <ul id='man'>
-                    <li class='is-hidden'>HEAD</li>
-                    <li class='is-hidden'>NECK</li>
-                    <li class='is-hidden'>TORSO</li>
-                    <li class='is-hidden'>RIGHT ARM</li>
-                    <li class='is-hidden'>LEFT ARM</li>
-                    <li class='is-hidden'>RIGHT LEG</li>
-                    <li class='is-hidden'>LEFT LEG</li>
-                </ul>
-
-
-
-
-                <ul id='word'>
-                    <li>{{ lettersOfWord }}</li>
-                </ul>
-
-                
-                    - first just get it to be the way I want it ON LOAD
-                    --- the only HTML that needs to 'change' is the above <ul>
-                
-
-
-
-
-                <ul id='alphabet'>
-                    <li>
-                        <button>A</button>
-                        <button>B</button>
-                        <button>C</button>
-                        <button>D</button>
-                        <button>E</button>
-                        <button>F</button>
-                        <button>G</button>
-                    </li>
-                    <li>
-                        <button>H</button>
-                        <button>I</button>
-                        <button>J</button>
-                        <button>K</button>
-                        <button>L</button>
-                        <button>M</button>
-                        <button>N</button>
-                        <button>O</button>
-                        <button>P</button>
-                    </li>
-                    <li>
-                        <button>Q</button>
-                        <button>R</button>
-                        <button>S</button>
-                        <button>T</button>
-                        <button>U</button>
-                        <button>V</button>
-                    </li>
-                    <li>
-                        <button>W</button>
-                        <button>X</button>
-                        <button>Y</button>
-                        <button>Z</button>
-                    </li>
-                </ul>
-            </main>
-            <footer>
-
-            </footer>
-        </div>
-        <script src="https://unpkg.com/vue@next"></script>
-        <script src="./assets/js/app.js"></script>
-    </body>
-</html> -->
