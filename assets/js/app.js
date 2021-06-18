@@ -7,6 +7,18 @@
 const App = {
     data() {
         return {
+            bodyParts: [
+                'head',
+                'neck',
+                'torso',
+                'right arm',
+                'left arm',
+                'hands',
+                'right leg',
+                'left leg',
+                'feet'
+            ],
+            bodyPartsShown: [],
             words: [
                 'kayak',
                 'mountain',
@@ -25,7 +37,7 @@ const App = {
             alphabet: [
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
             ],
-            lives: 7, // the 7 is derived from me choosing to have 7 body parts in the template
+            lives: 9, // the 9 is derived from me choosing to have 9 body parts in the template
             playerWordInProg: []
         }
     },
@@ -42,20 +54,24 @@ const App = {
     methods: {
         checkIfLettInWord(lett) {
             if (this.wordLettersArr.includes(lett.toLowerCase())) { // note that 'toLowerCase()' is needed so that what 'includes' is looking for matches what is inside the 'words' array (since 'wordLettersArr' is based on 'words')
-                for (let i = 0; i < this.wordLettersArr.length; i++) { // ["b", "a", "s", "k", "e", "t", "b", "a", "l", "l"]
+                for (let i = 0; i < this.wordLettersArr.length; i++) {
                     if (this.wordLettersArr[i] == lett.toLowerCase()) {
-                        this.playerWordInProg[i] = lett // LEFT OFF HERE - fix this
-
-                        // this.playerWordInProg.replaceAll(this.playerWordInProg[i], lett)
-                        
-                        // items2 = items.Select(x => x.Replace("one", "zero")).ToArray();
-
-                        // this.playerWordInProg.splice(i, /*number of times lett occurs*/, lett) // at index i, replaces 1 element with 'lett'
+                        this.playerWordInProg[i] = lett 
                     }
-                }                
+                }
+                if (!this.playerWordInProg.includes('_') && this.lives > 0) {
+                    this.playerWordInProg = 'You win'
+                }           
             } else {
                 this.lives -= 1
-                // don't mess with yet: add body part to man (and, optionally, present the incorrect letter, below the correct ones and crossed out)
+                /////////////////////// LEFT OFF HERE
+                for (let i = 0; i < this.bodyParts.length; i++) {
+                    this.bodyPartsShown.push(this.bodyParts[i])
+                }
+                ///////////////////////
+                if (this.lives <= 0) {
+                    this.playerWordInProg = 'You lose'
+                }
             }
         }
     },

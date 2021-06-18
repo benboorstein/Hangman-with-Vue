@@ -19,21 +19,15 @@
                     <p id='gallows-line-2'></p>
                 </section>
                 <ul id='man'>
-                    <li class='is-hidden'>HEAD</li>
-                    <li class='is-hidden'>NECK</li>
-                    <li class='is-hidden'>TORSO</li>
-                    <li class='is-hidden'>RIGHT ARM</li>
-                    <li class='is-hidden'>LEFT ARM</li>
-                    <li class='is-hidden'>RIGHT LEG</li>
-                    <li class='is-hidden'>LEFT LEG</li>
+                    <li v-for="bodyPartShown in bodyPartsShown">{{ bodyPartShown }}</li> <!-- QQQ for later: Should key be 'bodyPart'? -->
                 </ul>
                 <ul id='word'>
-                    <li v-for="letter in playerWordInProg" :key="letter">{{ letter }}</li>
+                    <li v-for="letter in playerWordInProg">{{ letter }}</li>
                 </ul>
-                <p id='alphabet'>
-                    <button @click="checkIfLettInWord(alphaLett)" v-for="alphaLett in alphabet">{{ alphaLett }}</button>
+                <ul id='alphabet'>
+                    <li><button @click="checkIfLettInWord(alphaLett)" v-for="alphaLett in alphabet">{{ alphaLett }}</button></li>
                     <!-- remember '@click' is short for 'v-on:click' -->
-                </p>
+                </ul>
             </main>
             <footer>
 

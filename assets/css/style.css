@@ -34,10 +34,7 @@ h1 {
   list-style-type: none;
   padding: 0;
   margin-top: 0;
-}
-
-.is-hidden {
-  visibility: hidden;
+  text-transform: uppercase;
 }
 
 #word {
@@ -56,6 +53,8 @@ h1 {
 }
 
 #alphabet {
+  list-style-type: none;
+  padding: 0;
   max-width: 228px;
   margin: auto;
   margin-top: 90px;
