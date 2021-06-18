@@ -19,7 +19,7 @@
                     <p id='gallows-line-2'></p>
                 </section>
                 <ul id='man'>
-                    <li v-for="bodyPartShown in bodyPartsShown">{{ bodyPartShown }}</li> <!-- QQQ for later: Should key be 'bodyPart'? -->
+                    <li v-for="bodyPartShown in bodyPartsShown" :key="bodyPartShown">{{ bodyPartShown }}</li>
                 </ul>
                 <ul id='word'>
                     <li v-for="letter in playerWordInProg">{{ letter }}</li>

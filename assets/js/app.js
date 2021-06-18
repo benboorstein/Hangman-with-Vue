@@ -18,7 +18,7 @@ const App = {
                 'left leg',
                 'feet'
             ],
-            bodyPartsShown: [],
+            bodyPartsShown: ['Please play! You have 9 guesses'],
             words: [
                 'kayak',
                 'mountain',
@@ -64,9 +64,28 @@ const App = {
                 }           
             } else {
                 this.lives -= 1
-                /////////////////////// LEFT OFF HERE
-                for (let i = 0; i < this.bodyParts.length; i++) {
-                    this.bodyPartsShown.push(this.bodyParts[i])
+                ///////////////////////
+                if (this.lives == 8) {
+                    this.bodyPartsShown = []
+                    this.bodyPartsShown.push(this.bodyParts[0])
+                } else if (this.lives == 7) {
+                    this.bodyPartsShown.push(this.bodyParts[1])
+                } else if (this.lives == 6) {
+                    this.bodyPartsShown.push(this.bodyParts[2])
+                } else if (this.lives == 5) {
+                    this.bodyPartsShown.push(this.bodyParts[3])
+                } else if (this.lives == 4) {
+                    this.bodyPartsShown.push(this.bodyParts[4])
+                } else if (this.lives == 3) {
+                    this.bodyPartsShown.push(this.bodyParts[5])
+                } else if (this.lives == 2) {
+                    this.bodyPartsShown.push(this.bodyParts[6])
+                } else if (this.lives == 1) {
+                    this.bodyPartsShown.push(this.bodyParts[7])
+                } else if (this.lives == 0) {
+                    this.bodyPartsShown.push(this.bodyParts[8])
+                } else {
+                    this.bodyPartsShown.push('mistake')
                 }
                 ///////////////////////
                 if (this.lives <= 0) {
@@ -78,7 +97,6 @@ const App = {
     // 'mounted' runs once, just after the component is created and placed on the page
     mounted() {
         this.playerWordInProg = this.wordLettersArr.map(letter => '_')
-        console.log(this.wordLettersArr) // TEMP
     }
 }
 
