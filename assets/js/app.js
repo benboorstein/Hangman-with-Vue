@@ -61,10 +61,11 @@ const App = {
                 }
                 if (!this.playerWordInProg.includes('_') && this.lives > 0) {
                     this.playerWordInProg = 'You win'
-                }           
+                    lett.disabled
+                }
             } else {
                 this.lives -= 1
-                ///////////////////////
+
                 if (this.lives == 8) {
                     this.bodyPartsShown = []
                     this.bodyPartsShown.push(this.bodyParts[0])
@@ -85,9 +86,8 @@ const App = {
                 } else if (this.lives == 0) {
                     this.bodyPartsShown.push(this.bodyParts[8])
                 } else {
-                    this.bodyPartsShown.push('mistake')
+                    lett.disabled
                 }
-                ///////////////////////
                 if (this.lives <= 0) {
                     this.playerWordInProg = 'You lose'
                 }
