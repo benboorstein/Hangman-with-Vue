@@ -1,9 +1,3 @@
-/* pseudocode
-- If man is drawn fully, game over and user loses
-- If word is completed by correct guesses, game over and user wins
-*/
-
-
 const App = {
     data() {
         return {
@@ -18,7 +12,7 @@ const App = {
                 'left leg',
                 'feet'
             ],
-            bodyPartsShown: ['Please play! You have 9 guesses'],
+            bodyPartsShown: [],
             words: [
                 'kayak',
                 'mountain',
@@ -37,8 +31,9 @@ const App = {
             alphabet: [
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
             ],
-            lives: 9, // the 9 is derived from me choosing to have 9 body parts in the template
-            playerWordInProg: []
+            lettersGuessed: [],
+            playerWordInProg: [],
+            gameOver: false
         }
     },
     // 'computed' is the other data-storage mechanism (besides 'data()') in Vue
@@ -46,50 +41,32 @@ const App = {
     // 'computed' functions run any time 'data()' changes.
     // For 'computed': In the template, refer to function names as if they were keys (of key-value pairs)
     computed: {
-        wordLettersArr() { 
-            return this.words[Math.floor(Math.random() * this.words.length)].split('')
+        wordLettersArr() {
+            return this.words[Math.floor(Math.random() * this.words.length)].split('') // e.g., ['m', 'o', 'u', 'n', 't', 'a', 'i', 'n']
+        },
+        livesRemaining() {
+            return this.bodyParts.length - this.bodyPartsShown.length
         }
     },
     // 'methods' is for click events mainly...and to store other functions that will be explicitly called in the template
     methods: {
         checkIfLettInWord(lett) {
+            this.lettersGuessed.push(lett)
             if (this.wordLettersArr.includes(lett.toLowerCase())) { // note that 'toLowerCase()' is needed so that what 'includes' is looking for matches what is inside the 'words' array (since 'wordLettersArr' is based on 'words')
                 for (let i = 0; i < this.wordLettersArr.length; i++) {
-                    if (this.wordLettersArr[i] == lett.toLowerCase()) {
+                    if (this.wordLettersArr[i] === lett.toLowerCase()) {
                         this.playerWordInProg[i] = lett 
                     }
                 }
-                if (!this.playerWordInProg.includes('_') && this.lives > 0) {
+                if (!this.playerWordInProg.includes('_')) {
                     this.playerWordInProg = 'You win'
-                    lett.disabled
+                    this.gameOver = true
                 }
             } else {
-                this.lives -= 1
-
-                if (this.lives == 8) {
-                    this.bodyPartsShown = []
-                    this.bodyPartsShown.push(this.bodyParts[0])
-                } else if (this.lives == 7) {
-                    this.bodyPartsShown.push(this.bodyParts[1])
-                } else if (this.lives == 6) {
-                    this.bodyPartsShown.push(this.bodyParts[2])
-                } else if (this.lives == 5) {
-                    this.bodyPartsShown.push(this.bodyParts[3])
-                } else if (this.lives == 4) {
-                    this.bodyPartsShown.push(this.bodyParts[4])
-                } else if (this.lives == 3) {
-                    this.bodyPartsShown.push(this.bodyParts[5])
-                } else if (this.lives == 2) {
-                    this.bodyPartsShown.push(this.bodyParts[6])
-                } else if (this.lives == 1) {
-                    this.bodyPartsShown.push(this.bodyParts[7])
-                } else if (this.lives == 0) {
-                    this.bodyPartsShown.push(this.bodyParts[8])
-                } else {
-                    lett.disabled
-                }
-                if (this.lives <= 0) {
+                this.bodyPartsShown.push(this.bodyParts[this.bodyPartsShown.length]) // clever!
+                if (this.livesRemaining <= 0) {
                     this.playerWordInProg = 'You lose'
+                    this.gameOver = true
                 }
             }
         }

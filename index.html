@@ -9,24 +9,27 @@
         <title>Hangman with Vue</title>
     </head>
     <body>
-        <div id="app">
+        <div id="app" v-cloak> <!-- 'v-cloak' prevents the user from being able to see Vue rendering in the UI. I.e., thanks to 'v-cloak', the mustache syntax etc. is no longer visible for that split second. Note there is styling for 'v-cloak' in the CSS. -->
             <header>
                 <h1>Hangman with Vue</h1>
             </header>
             <main>
                 <section>
-                    <p id='gallows-line-1'></p>
-                    <p id='gallows-line-2'></p>
+                    <p id="gallows-line-1"></p>
+                    <p id="gallows-line-2"></p>
                 </section>
-                <ul id='man'>
+                <ul id="man">
                     <li v-for="bodyPartShown in bodyPartsShown" :key="bodyPartShown">{{ bodyPartShown }}</li>
                 </ul>
-                <ul id='word'>
+                <ul id="word">
                     <li v-for="letter in playerWordInProg">{{ letter }}</li>
                 </ul>
-                <ul id='alphabet'>
-                    <li><button @click="checkIfLettInWord(alphaLett)" v-for="alphaLett in alphabet">{{ alphaLett }}</button></li>
-                    <!-- remember '@click' is short for 'v-on:click' -->
+                <ul v-show="!gameOver" id="alphabet"> <!-- show this whole element if gameOver is not true -->
+                    <li>
+                        <button v-bind:disabled="lettersGuessed.includes(alphaLett)" @click="checkIfLettInWord(alphaLett)" v-for="alphaLett in alphabet">{{ alphaLett }}</button>
+                        <!-- remember that '@click' is short for 'v-on:click' -->
+                        <!-- remember that 'v-bind' (which binds -- ONE-way -- the template and the instance) hooks into an attribute and evaluates what's passed to it to see if it's 'true' or 'false' -->
+                    </li>
                 </ul>
             </main>
         </div>
